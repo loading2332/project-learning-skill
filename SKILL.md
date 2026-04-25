@@ -1,6 +1,6 @@
 ---
 name: project-learning-tutor
-description: Use when Codex helps the user learn an existing code project through structured tutorial lessons, QA answers, syntax notes, completion checks, review summaries, or project-specific study workflows. Trigger when the user asks to generate a lesson, next lesson, tutorial content, answer tutorial/QA questions, complete syntax notes, check lesson completion, review learning progress, or maintain a project learning folder.
+description: Use when Codex helps the user learn an existing code project through a project-specific course outline, structured tutorial lessons, QA answers, syntax notes, completion checks, review summaries, or study workflows. Trigger when the user asks to create a course outline covering knowledge needed for a project, generate a lesson or next lesson, answer tutorial/QA questions, complete syntax notes, check lesson completion, review learning progress, or maintain a project learning folder.
 ---
 
 # Project Learning Tutor
@@ -38,6 +38,43 @@ Before creating or updating learning content:
 4. Preserve the user's existing wording and learning structure.
 
 When `rg` is unavailable, use the platform's next best file search.
+
+## Course Outline Bootstrap
+
+When the user starts a learning track by asking for a course outline, curriculum, study plan, or content that covers the knowledge needed to independently use a project:
+
+1. Inspect the project instructions, README, package files, source tree, tests, configs, and existing docs.
+2. Infer the project's domain, stack, architecture, and prerequisite knowledge.
+3. Create a progressive course outline with a flexible number of lessons. Do not force a fixed lesson count.
+4. Make the outline cover both conceptual knowledge and hands-on project tasks.
+5. Include code practice and knowledge-output tasks where useful.
+6. Include acceptance criteria for each lesson.
+7. Include stage review tasks every 3-5 lessons when the course is longer than a few lessons.
+8. Save the outline under `tutorial/`, following any existing naming style. If no style exists, use `tutorial/project-course-outline.md`.
+
+The outline should help the user move from project orientation to independent usage or development.
+
+Recommended outline sections:
+
+```md
+# Project Course Outline
+
+## 课程目标
+## 学习产出
+## 推荐学习节奏
+## 第 X 阶段：Stage Name
+### 第 N 节：Lesson Name
+核心内容：
+代码练习：
+知识输出：
+验收标准：
+## 阶段复盘任务
+## 最终验收清单
+## 延伸学习方向
+## 建议的学习方法
+```
+
+After generating the outline, use it as the source of truth for future "generate next lesson" requests unless the user changes direction.
 
 ## Lesson Generation
 
